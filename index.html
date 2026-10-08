@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Creek - Sector 4</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div id="top-left">
+                <h1>Shadow Creek - Sector 4</h1>
+                <span id="hazard-status" class="status-ok">O2: Normal | Hazard: Low</span>
+            </div>
+            <div id="top-right">
+                <span id="credit-balance">Credits: 0</span>
+                <span id="resource-counters">Resources: 0</span>
+            </div>
+        </div>
+
+        <!-- Middle Section: Canvas + Sidebar -->
+        <div id="middle-section">
+            <!-- Center Viewport -->
+            <div id="viewport-container">
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div id="right-sidebar">
+                <div id="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="inventory">Inventory</button>
+                    <button class="tab-btn" data-tab="skills">Skills</button>
+                    <button class="tab-btn" data-tab="quests">Quests</button>
+                </div>
+
+                <div id="sidebar-content">
+                    <div id="inventory-tab" class="tab-pane active">
+                        <div id="inventory-grid">
+                            <!-- 20 slots generated via JS -->
+                        </div>
+                    </div>
+                    <div id="skills-tab" class="tab-pane">
+                        <div class="skill-item" id="skill-mining">
+                            <span class="skill-name">Mining (Lv 1)</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                        </div>
+                        <div class="skill-item" id="skill-electronics">
+                            <span class="skill-name">Electronics (Lv 1)</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                        </div>
+                        <div class="skill-item" id="skill-gathering">
+                            <span class="skill-name">Gathering (Lv 1)</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                        </div>
+                        <div class="skill-item" id="skill-metallurgy">
+                            <span class="skill-name">Metallurgy (Lv 1)</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                        </div>
+                    </div>
+                    <div id="quests-tab" class="tab-pane">
+                        <div class="quest-item">
+                            <h3>Prologue: Shift Work</h3>
+                            <p>Get to work. The colony isn't going to build itself.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar: Log -->
+        <div id="bottom-bar">
+            <div id="event-log">
+                <div class="log-entry">Welcome to Shadow Creek, miner.</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>

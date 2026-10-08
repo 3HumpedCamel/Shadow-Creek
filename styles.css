@@ -1,0 +1,233 @@
+/* Space-Appalachia aesthetic: early 20th-century coal camp shacks, misty pine forests, rusty sci-fi industrial gear */
+
+:root {
+    --bg-dark: #121517;
+    --border-color: #5d4037; /* Rusty slate/brass */
+    --text-primary: #e0e0e0;
+    --text-accent: #ffb74d;
+    --panel-bg: #1e2226;
+    --panel-border: #3e2723;
+    --canvas-border: #4a3b32;
+    --status-ok: #81c784;
+    --status-warn: #e57373;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Courier New', Courier, monospace; /* Industrial/retro feel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    width: 1100px;
+    height: 800px;
+    background-color: var(--panel-bg);
+    border: 4px solid var(--border-color);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Top Bar */
+#top-bar {
+    height: 50px;
+    background-color: #263238;
+    border-bottom: 2px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    flex-shrink: 0;
+}
+
+#top-left h1 {
+    font-size: 16px;
+    color: var(--text-accent);
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#hazard-status {
+    font-size: 12px;
+}
+.status-ok { color: var(--status-ok); }
+.status-warn { color: var(--status-warn); }
+
+#top-right span {
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+/* Middle Section */
+#middle-section {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Viewport */
+#viewport-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border-right: 2px solid var(--panel-border);
+    position: relative;
+}
+
+#game-canvas {
+    border: 4px solid var(--canvas-border);
+    background-color: #1a1a1a;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    cursor: crosshair;
+}
+
+/* Progress bar over node */
+.action-timer {
+    position: absolute;
+    height: 6px;
+    background: #4caf50;
+    border: 1px solid #fff;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Right Sidebar */
+#right-sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #202428;
+}
+
+#sidebar-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--panel-border);
+}
+
+.tab-btn {
+    flex: 1;
+    background: #2a2f33;
+    color: #999;
+    border: none;
+    border-right: 1px solid var(--panel-border);
+    padding: 10px 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tab-btn:last-child { border-right: none; }
+.tab-btn:hover { background: #353a40; color: #fff; }
+.tab-btn.active { background: var(--bg-dark); color: var(--text-accent); border-bottom: 2px solid var(--text-accent); }
+
+#sidebar-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.tab-pane {
+    display: none;
+}
+.tab-pane.active {
+    display: block;
+}
+
+/* Inventory */
+#inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+
+.inv-slot {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.inv-slot:hover { border-color: #666; }
+
+.item-count {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    font-size: 10px;
+    color: yellow;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.item-name {
+    font-size: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    pointer-events: none;
+}
+
+/* Skills */
+.skill-item { margin-bottom: 15px; }
+.skill-name { font-size: 12px; display: block; margin-bottom: 4px; }
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #111;
+    border: 1px solid #444;
+}
+.progress-fill {
+    height: 100%;
+    background-color: #4db8ff;
+    width: 0%;
+}
+
+/* Quests */
+.quest-item h3 { font-size: 14px; color: var(--text-accent); margin-bottom: 5px; }
+.quest-item p { font-size: 12px; color: #aaa; }
+
+/* Bottom Bar / Log */
+#bottom-bar {
+    height: 120px;
+    background-color: #1a1c1e;
+    border-top: 2px solid var(--panel-border);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+#event-log {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.log-entry {
+    margin-bottom: 2px;
+}
+.log-entry.system { color: #81c784; }
+.log-entry.warn { color: #e57373; }
+.log-entry.xp { color: #64b5f6; }
